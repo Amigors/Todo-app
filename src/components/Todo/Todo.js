@@ -5,7 +5,7 @@ import './Todo.css';
 
 const Todo = () => {
   return(
-    <div>
+    <div className='todo-wrapper'>
       <TodoActions />
       <TodoHeader />
       <TodoRender />
