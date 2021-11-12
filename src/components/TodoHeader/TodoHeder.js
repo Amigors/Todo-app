@@ -42,7 +42,8 @@ const TodoHeader = ({
   handleCloseButton,
   handleEditTodo,
   handleRemoveTodo,
-  isOpenDisplayTodo
+  isOpenDisplayTodo,
+  totalCount
 }) => {
   const weekDay = moment().format('dddd')
   const date = moment().date();
@@ -51,11 +52,11 @@ const TodoHeader = ({
     <div className='todo-header'>
       <div style={styles.wrapper}>
         <div className='todo-count'>
-          <span style={styles.finished}>1</span>
+          <span style={styles.finished}>{totalCount.finished}</span>
 
           <div style={styles.total}> 
             <span>Tasks</span>
-            <span>/ 5</span>
+            <span>{`/ ${totalCount.total}`}</span>
           </div>
         </div>
 

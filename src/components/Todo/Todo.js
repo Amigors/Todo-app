@@ -14,6 +14,24 @@ const initialState = {
   index: null
 }
 
+const getIsFinishedTodosCount = (todos) => todos.reduce((acc, curr) => {
+  acc.total = todos.length
+  if (curr.isFinished){
+    acc.finished = acc.finished + 1
+  }
+  return acc;
+}, {total: 0, finished: 0})
+
+const setFilterTab = (tab, todos) => {
+  if (tab === 0) {
+    return todos
+  } else if (tab === 1){
+    return todos.filter((todo) => !todo.isFinished)
+  } else if (tab === 2){
+    return todos.filter((todo) => todo.isFinished)
+  }
+}
+
 const Todo = () => {
   const [tab, setTab] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
@@ -21,6 +39,10 @@ const Todo = () => {
   const [todos, setTodo] = useState([])
   const [formData, setFormData] = useState(initialState)
   const handleOpenDialog = () => setIsOpen((prevState) => !prevState)
+
+  const totalCount = getIsFinishedTodosCount(todos)
+
+  const sortedTodos = setFilterTab(tab, todos)
 
   const resetAll = () => {
     setIsOpen(false)
@@ -78,13 +100,14 @@ const Todo = () => {
         isOpenDisplayTodo={isOpenDisplayTodo}
         handleRemoveTodo={handleRemoveTodo}
         handleCloseButton={resetAll}
+        totalCount={totalCount}
       />
       <TodoActions
         handleChangeTab={handleChangeTab}
         tab={tab}
       />
       <TodoRender
-        todos={todos}
+        todos={sortedTodos}
         handleMarkTodo={handleMarkTodo}
         handleOpenTodo={handleOpenTodo}
       />
