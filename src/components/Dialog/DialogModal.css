@@ -1,0 +1,17 @@
+form{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.Dialog-paperWidthSm{
+    width: 450px;
+    min-height: 350px;
+}
+
+.DialogTitle-root{
+    border-bottom: 1px solid #8080802b;
+    padding: 10px 0;
+}
